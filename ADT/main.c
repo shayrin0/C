@@ -3,12 +3,11 @@
 
 struct Array
 {
-    int *A;
+    int A[10];
     int size;
     int length;
 };
 
-// Display elements of an array
 void Display(struct Array arr)
 {
     printf("\nElements are\n");
@@ -16,25 +15,31 @@ void Display(struct Array arr)
         printf("%d ", arr.A[i]);
 }
 
+// Add an element at the end of the array
+void Append(struct Array *arr, int x)
+{
+    if (arr->length < arr->size)
+        arr->A[arr->length++] = x;
+}
+
+// Insert a value at a given index
+void Insert(struct Array *arr, int index, int x)
+{
+    if (index >= 0 && index <= arr->length)
+    {
+        for(int i=arr->length; i>index; i--)
+            arr->A[i]=arr->A[i-1];
+        arr->A[index]=x;
+        arr->length++;
+    }
+}
 
 int main()
 {
-    struct Array arr;
-    int i, n;
-    printf("Enter size of an array: ");
-    scanf("%d", &arr.size);
-    // Dynamic allocation of memory
-    arr.A = (int *)malloc(arr.size * sizeof(int));
-    arr.length = 0;
+    struct Array arr={{2,3,4,5,6}, 10,5};
 
-    printf("Enter number of numbers: ");
-    scanf("%d", &n);
-
-    printf("\nEnter all the elements:");
-    for(i=0; i<n; i++)
-        scanf("%d", &arr.A[i]);
-    arr.length = n;
-
+    // Append(&arr, 10);
+    Insert(&arr, 3, 10);
     Display(arr);
 
     return 0;
