@@ -166,7 +166,6 @@ float Avg(struct Array arr)
     return (float)Sum(arr)/arr.length;
 }
 
-// Reverse an array version1
 void Reverse(struct Array *arr)
 {
     int *B;
@@ -178,16 +177,52 @@ void Reverse(struct Array *arr)
         arr->A[i] = B[i];
 }
 
-// Reverse an array version2
+// Another method for reversing the elements in an array
 void Reverse2 (struct Array *arr)
 {
     for(int i=0, j=arr->length-1; i<j; i++, j--)
         swap(&arr->A[i], &arr->A[j]);
 }
 
+// Inserting an element in a sorted array
+void InsertSort (struct Array *arr, int x)
+{
+    int i = arr->length-1;
+    if (arr->length == arr->size)
+        return;
+    while(i>=0 && arr->A[i] > x)
+    {
+        arr->A[i+1] = arr->A[i];
+        i--;
+    }
+    arr->A[i+1] = x;
+    arr->length++;
+}
+
+// Check if an array is sorted
+int isSorted(struct Array arr)
+{
+    for (int i=0; i<arr.length-1; i++)
+        if (arr.A[i] > arr.A[i+1])
+            return 0;
+    return 1;
+}
+
+// Put the negative numbers on the left and positives on the right
+void Rearrange (struct Array *arr)
+{
+    int i=0, j=arr->length-1;
+    while(i<j)
+    {
+        while(arr->A[i]<0) i++;
+        while(arr->A[j]>=0) j--;
+        if(i<j) swap(&arr->A[i], &arr->A[j]);
+    }
+}
+
 int main()
 {
-    struct Array arr={{2,3,4,5,6}, 10,5};
+    struct Array arr={{-3,2,3,-4,-5,6}, 10,6};
 
     // Append(&arr, 10);
     // Insert(&arr, 3, 10);
@@ -201,7 +236,10 @@ int main()
     // printf("%d\n", Min(arr));
     // printf("%d\n", Sum(arr));
     // printf("%f\n", Avg(arr));
-    Reverse2(&arr);
+    // Reverse2(&arr);
+    // InsertSort(&arr, 1);
+    // printf("%d\n", isSorted(arr));
+    Rearrange(&arr);
     Display(arr);
 
     return 0;
