@@ -9,7 +9,7 @@ struct Array
 };
 
 // Display all the elements in an array
-void Display(struct Array arr)
+void Display (struct Array arr)
 {
     printf("\nElements are\n");
     for(int i=0; i<arr.length; i++)
@@ -17,14 +17,14 @@ void Display(struct Array arr)
 }
 
 // Add an element at the end of the array
-void Append(struct Array *arr, int x)
+void Append (struct Array *arr, int x)
 {
     if (arr->length < arr->size)
         arr->A[arr->length++] = x;
 }
 
 // Insert a value at a given index
-void Insert(struct Array *arr, int index, int x)
+void Insert (struct Array *arr, int index, int x)
 {
     if (index >= 0 && index <= arr->length)
     {
@@ -36,7 +36,7 @@ void Insert(struct Array *arr, int index, int x)
 }
 
 // Delete a value at a given index
-int Delete(struct Array *arr, int index)
+int Delete (struct Array *arr, int index)
 {
     int x = 0;
     if (index >= 0 && index <= arr->length-1)
@@ -51,7 +51,7 @@ int Delete(struct Array *arr, int index)
 }
 
 // Swap two elements
-void swap(int *x, int *y)
+void swap (int *x, int *y)
 {
     int temp;
     temp = *x;
@@ -60,7 +60,7 @@ void swap(int *x, int *y)
 }
 
 // Linearly search for an element
-int LinearSearch(struct Array *arr, int key)
+int LinearSearch (struct Array *arr, int key)
 {
     for(int i=0; i<arr->length; i++)
     {
@@ -78,7 +78,7 @@ int LinearSearch(struct Array *arr, int key)
 }
 
 // Bineary search to find an element
-int BinarySearch(struct Array arr, int key)
+int BinarySearch (struct Array arr, int key)
 {
     int l, mid, h;
     l=0;
@@ -117,7 +117,7 @@ int RBinSearch (int a[], int l, int h, int key)
 }
 
 // Get a value from a certain index in the array
-int Get(struct Array arr, int index)
+int Get (struct Array arr, int index)
 {
     if (index >= 0 && index < arr.length)
         return arr.A[index];
@@ -125,14 +125,14 @@ int Get(struct Array arr, int index)
 }
 
 // Set a value at a specific index of the array
-void Set(struct Array *arr, int index, int x)
+void Set (struct Array *arr, int index, int x)
 {
     if (index >= 0 && index < arr->length)
         arr->A[index] = x;
 }
 
 // Find the max element in the array
-int Max(struct Array arr)
+int Max (struct Array arr)
 {
     int max = arr.A[0];
     for (int i=0; i<arr.length; i++)
@@ -142,7 +142,7 @@ int Max(struct Array arr)
 }
 
 // Find the min element in the array
-int Min(struct Array arr)
+int Min (struct Array arr)
 {
     int min = arr.A[0];
     for (int i=0; i<arr.length; i++)
@@ -152,7 +152,7 @@ int Min(struct Array arr)
 }
 
 // Calculate the sum of elements in an array
-int Sum(struct Array arr)
+int Sum (struct Array arr)
 {
     int s=0;
     for (int i=0; i<arr.length; i++)
@@ -161,12 +161,12 @@ int Sum(struct Array arr)
 }
 
 // Calculate the average in an array
-float Avg(struct Array arr)
+float Avg (struct Array arr)
 {
     return (float)Sum(arr)/arr.length;
 }
 
-void Reverse(struct Array *arr)
+void Reverse (struct Array *arr)
 {
     int *B;
     B = (int *) malloc(arr->length * sizeof(int));
@@ -177,14 +177,12 @@ void Reverse(struct Array *arr)
         arr->A[i] = B[i];
 }
 
-// Another method for reversing the elements in an array
 void Reverse2 (struct Array *arr)
 {
     for(int i=0, j=arr->length-1; i<j; i++, j--)
         swap(&arr->A[i], &arr->A[j]);
 }
 
-// Inserting an element in a sorted array
 void InsertSort (struct Array *arr, int x)
 {
     int i = arr->length-1;
@@ -199,8 +197,7 @@ void InsertSort (struct Array *arr, int x)
     arr->length++;
 }
 
-// Check if an array is sorted
-int isSorted(struct Array arr)
+int isSorted (struct Array arr)
 {
     for (int i=0; i<arr.length-1; i++)
         if (arr.A[i] > arr.A[i+1])
@@ -208,10 +205,10 @@ int isSorted(struct Array arr)
     return 1;
 }
 
-// Put the negative numbers on the left and positives on the right
 void Rearrange (struct Array *arr)
 {
-    int i=0, j=arr->length-1;
+    int i=0;
+    int j=arr->length-1;
     while(i<j)
     {
         while(arr->A[i]<0) i++;
@@ -220,9 +217,40 @@ void Rearrange (struct Array *arr)
     }
 }
 
+// Merge two arrays
+struct Array* Merge(struct Array *arr1, struct Array *arr2)
+{
+    int i, j, k;
+    i=j=k=0;
+    struct Array *arr3 = (struct Array *) malloc(sizeof(struct Array));
+    
+    while(i<arr1->length && j<arr2->length)
+    {
+        if (arr1->A[i] < arr2->A[j])
+            arr3->A[k++] = arr1->A[i++];
+        else
+            arr3->A[k++] = arr2->A[j++];
+    }
+    
+    for (;i<arr1->length ; i++)
+        arr3->A[k++] = arr1->A[i];
+    for (;j<arr2->length ; j++)
+        arr3->A[k++] = arr2->A[j];
+        
+    arr3->length = arr1->length + arr2->length;
+    arr3->size = 10;
+    
+    return arr3;
+}
+
 int main()
 {
-    struct Array arr={{-3,2,3,-4,-5,6}, 10,6};
+    struct Array arr1={{1,2,3,4,5}, 10,5};
+    struct Array arr2={{12,14,16,18,20}, 10,5};
+    struct Array *arr3;
+    
+    arr3 = Merge(&arr1, &arr2);
+    Display(*arr3);
 
     // Append(&arr, 10);
     // Insert(&arr, 3, 10);
@@ -239,8 +267,8 @@ int main()
     // Reverse2(&arr);
     // InsertSort(&arr, 1);
     // printf("%d\n", isSorted(arr));
-    Rearrange(&arr);
-    Display(arr);
+    // Rearrange(&arr);
+    // Display(arr);
 
     return 0;
 }
