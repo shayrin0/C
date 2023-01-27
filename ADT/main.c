@@ -67,8 +67,11 @@ int LinearSearch(struct Array *arr, int key)
         if(key == arr->A[i])
         {
             // LinearSearch improvement: Transposition
-            swap(&arr->A[i], &arr->A[i-1]);
-            return i-1;
+            // swap(&arr->A[i], &arr->A[i-1]);
+            // return i-1;
+            // LinearSearch improvement: Move to front/head
+            swap(&arr->A[i], &arr->A[0]);
+            return 0;
         }
     }
     return -1;
