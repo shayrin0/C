@@ -60,12 +60,16 @@ void swap(int *x, int *y)
 }
 
 // Linearly search for an element
-int LinearSearch(struct Array arr, int key)
+int LinearSearch(struct Array *arr, int key)
 {
-    for(int i=0; i<arr.length; i++)
+    for(int i=0; i<arr->length; i++)
     {
-        if(key == arr.A[i])
-            return i;
+        if(key == arr->A[i])
+        {
+            // LinearSearch improvement: Transposition
+            swap(&arr->A[i], &arr->A[i-1]);
+            return i-1;
+        }
     }
     return -1;
 }
@@ -77,7 +81,7 @@ int main()
     // Append(&arr, 10);
     // Insert(&arr, 3, 10);
     // printf("%d\n", Delete(&arr, 1));
-    printf("%d\n", LinearSearch(arr, 4));
+    printf("%d\n", LinearSearch(&arr, 4));
     Display(arr);
 
     return 0;
