@@ -85,7 +85,6 @@ int main()
     }
     else
     {
-        new_dim = malloc(sizeof(int));
         new_dim[0] = n;
     }
     
