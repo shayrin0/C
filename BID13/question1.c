@@ -81,7 +81,6 @@ int main()
     else if (n<m)
     {
         swap(&n, &m);
-        new_dim = malloc(n * sizeof(int));
         new_dim = squareMaker(n, m);
     }
     else
