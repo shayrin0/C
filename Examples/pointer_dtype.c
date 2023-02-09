@@ -24,7 +24,7 @@ int main()
 
     long long *pAddress4;
     pAddress4 = (long long*)&g_data;
-    printf("Value at address %p is %x.\n", pAddress4, *pAddress4);
+    printf("Value at address %p is %I64x.\n", pAddress4, *pAddress4);
 
     return 0;
 }
