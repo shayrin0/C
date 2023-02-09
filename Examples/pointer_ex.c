@@ -13,12 +13,14 @@
 
 int main()
 {
-    char c = 100;
-    char* p;
+    int c = 100;
+    
+    printf("The address of c is %p and its value is %d.\n", &c, c);
 
-    printf("The address of c is .\n", &c);
+    int* pAdrs = &c;
+    int value = *pAdrs; // dereferencing
 
-    *p = c;
+    printf("The value stored in the pointer is %d.\n", value);
 
     return 0;
 }
