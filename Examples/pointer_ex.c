@@ -22,5 +22,9 @@ int main()
 
     printf("The value stored in the pointer is %d.\n", value);
 
+    *pAdrs = 65;
+
+    printf("The address of c is %p and its value is %d.\n", &c, c);
+
     return 0;
 }
