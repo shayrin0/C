@@ -12,19 +12,22 @@ int main()
 {
     char *pAddress1;
     pAddress1 = (char*)&g_data;
-    printf("Value at address %p is %x.\n", pAddress1, *pAddress1);
+    for (int i=0; i<sizeof(g_data)/2; i++)
+        printf("Char type: Value at address %p is %x.\n", pAddress1++, *pAddress1);
 
-    int *pAddress2;
-    pAddress2 = (int*)&g_data;
-    printf("Value at address %p is %x.\n", pAddress2, *pAddress2);
+    short *pAddress2;
+    pAddress2 = (short*)&g_data;
+    for (int i=0; i<sizeof(g_data)/2; i++)
+        printf("Short type: Value at address %p is %x.\n", pAddress2++, *pAddress2);
 
-    short *pAddress3;
-    pAddress3 = (short*)&g_data;
-    printf("Value at address %p is %x.\n", pAddress3, *pAddress3);
+    int *pAddress3;
+    pAddress3 = (int*)&g_data;
+    for (int i=0; i<sizeof(g_data)/4; i++)
+        printf("Int type: Value at address %p is %x.\n", pAddress3++, *pAddress3);
 
     long long *pAddress4;
     pAddress4 = (long long*)&g_data;
-    printf("Value at address %p is %I64x.\n", pAddress4, *pAddress4);
+    printf("Long Long type: Value at address %p is %I64x.\n", pAddress4, *pAddress4);
 
     return 0;
 }
