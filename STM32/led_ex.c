@@ -34,5 +34,8 @@ int main()
     // then make the 24th bit position as 1
     *pPortDModeReg |= 0x01000000;
 
+    // set 12th bit of the GPIOD as HIGH
+    *pPortDOutReg |= 0x1000;
+
     while (1);
 }
