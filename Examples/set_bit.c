@@ -13,7 +13,9 @@ int main()
 
     printf("The number is 0x%x.\n", num);
 
-    num |= 0x90;
+    // num |= 0x90;
+    num |= (1 << 4);
+    num |= (1 << 7);
 
     printf("The number is 0x%x.\n", num);
 
