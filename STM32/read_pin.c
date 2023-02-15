@@ -11,12 +11,12 @@
 
 int main()
 {
-    uint32_t *pClkCtrlReg = (uint32_t*)0x40023830;
-    uint32_t *pPortDModeReg = (uint32_t*)0x40020C00;
-    uint32_t *pPortDOutReg = (uint32_t*)0x40020C14;
+    uint32_t volatile *pClkCtrlReg = (uint32_t*)0x40023830;
+    uint32_t volatile *pPortDModeReg = (uint32_t*)0x40020C00;
+    uint32_t volatile *pPortDOutReg = (uint32_t*)0x40020C14;
 
-    uint32_t *pPortAModeReg = (uint32_t*)0x40020000;
-    uint32_t *pPortAInReg = (uint32_t*)0x40020010;
+    uint32_t volatile *pPortAModeReg = (uint32_t*)0x40020000;
+    uint32_t volatile *pPortAInReg = (uint32_t*)0x40020010;
 
     // enable the clock for GPIOA & GPIOD peripheral in the AHB1ENR
     *pClkCtrlReg |= (1 << 3);
@@ -35,7 +35,7 @@ int main()
     {
         // read the pin status of the pin PA0 (GPIOA Input Data Register)
         uint8_t pinStatus = (uint8_t) *pPortAInReg & 0x1;
-        
+
         if(pinStatus)
         {
             // turn on the LED
