@@ -25,17 +25,17 @@ int main()
     uint32_t *pPortDModeReg = (uint32_t*)0x40020C00;
     uint32_t *pPortDOutReg = (uint32_t*)0x40020C14;
 
-    // enable the clock for GPIOD peripheral in the AHB1ENR
-    *pClkCtrlReg |= 0x08;
+    // enable the clock for GPIOD peripheral in the AHB1ENR (SET the 3rd bit position)
+    *pClkCtrlReg |= (1 << 3); // instead of 0x08
 
     // configure the mode of the IO pin as output
     // first clear the 24th and 25th bit positions
-    *pPortDModeReg &= 0xFCFFFFFF;
+    *pPortDModeReg &= ~(3 << 24); // instead of 0xFCFFFFFF
     // then make the 24th bit position as 1
-    *pPortDModeReg |= 0x01000000;
+    *pPortDModeReg |= (1 << 24); // instead of 0x01000000
 
     // set 12th bit of the GPIOD as HIGH
-    *pPortDOutReg |= 0x1000;
+    *pPortDOutReg |= (1 << 12); // instead of 0x1000
 
     while (1);
 }
