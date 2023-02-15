@@ -9,7 +9,13 @@
 
 int main()
 {
-    int32_t num;
+    int32_t num = 56;
+
+    printf("The number is 0x%x.\n", num);
+
+    num |= 0x90;
+
+    printf("The number is 0x%x.\n", num);
 
     return 0;
 }
