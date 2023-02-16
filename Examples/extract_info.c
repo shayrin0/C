@@ -23,6 +23,12 @@ struct Packet
 
 int main()
 {
+    uint32_t packetValue;
+    printf("Enter the 32bit packet value:");
+    scanf("%u", &packetValue);
+
+    struct Packet packet;
+    
 
     return 0;
 }
