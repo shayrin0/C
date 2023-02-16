@@ -11,12 +11,12 @@
 
 int main()
 {
-    uint32_t volatile *pClkCtrlReg = (uint32_t*)0x40023830;
-    uint32_t volatile *pPortDModeReg = (uint32_t*)0x40020C00;
-    uint32_t volatile *pPortDOutReg = (uint32_t*)0x40020C14;
+    uint32_t volatile *const pClkCtrlReg = (uint32_t*)0x40023830;
+    uint32_t volatile *const pPortDModeReg = (uint32_t*)0x40020C00;
+    uint32_t volatile *const pPortDOutReg = (uint32_t*)0x40020C14;
 
-    uint32_t volatile *pPortAModeReg = (uint32_t*)0x40020000;
-    uint32_t volatile *pPortAInReg = (uint32_t*)0x40020010;
+    uint32_t volatile *const pPortAModeReg = (uint32_t*)0x40020000;
+    uint32_t const volatile *const pPortAInReg = (uint32_t*)0x40020010;
 
     // enable the clock for GPIOA & GPIOD peripheral in the AHB1ENR
     *pClkCtrlReg |= (1 << 3);
