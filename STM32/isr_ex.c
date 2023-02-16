@@ -25,5 +25,15 @@ uint32_t volatile *pNVICIRQEnReg = (uint32_t*)0xE000E100;
 
 int main()
 {
+    button_init();
 
+}
+
+void button_init(void)
+{
+    *pClkCtrlReg |= (1 << 0);
+    *pClkCtrlRegApb2 |= (1 << 14);
+    *pEXTTIEdgeCtrlReg |= (1 << 0);
+    *pEXTTIMaskReg |= (1 << 0);
+    *pNVICIRQEnReg |= (1 << 6);
 }
