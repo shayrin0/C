@@ -27,6 +27,25 @@ int main()
 {
     button_init();
 
+    while (1)
+    {
+        // disable interrupt
+        *pEXTTIMaskReg &= ~(1 << 0);
+
+        if(g_button_pressed)
+        {
+            // add delay for button debouncing
+            for (uint32_t volatile i=0; i<500000/2; i++);
+            g_button_press_count++;
+            printf("Button is pressed : %u\n", g_button_press_count);
+            g_button_pressed = 0;
+        }
+
+        // enable interrupt
+        *pEXTTIMaskReg |= (1 << 0);
+    }
+    
+
 }
 
 void button_init(void)
