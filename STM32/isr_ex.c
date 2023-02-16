@@ -56,3 +56,10 @@ void button_init(void)
     *pEXTTIMaskReg |= (1 << 0);
     *pNVICIRQEnReg |= (1 << 6);
 }
+
+void EXTI0_IRQHandler(void)
+{
+    // make this flag SET if button pressed
+    g_button_pressed = 1;
+    *pEXTTIPendReg |= (1 << 0);
+}
