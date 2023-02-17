@@ -18,4 +18,8 @@ int main()
 
     // 1. Enable the peripheral clock of GPIOD peripheral
     *pClockCtrlReg |= (1 << 3);
+
+    // 2. configure PD0, PD1, PD2, PD3 as output (rows of the keypad)
+    *pGPIODModeReg &= ~(0xFF); // clear the bits first
+    *pGPIODModeReg |= 0x55; // configure them
 }
