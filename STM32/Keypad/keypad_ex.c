@@ -6,6 +6,12 @@
     MCU: STM32f407
 */
 #include <stdint.h>
+#include <stdio.h>
+
+void delay()
+{
+    for(uint32_t i=0; i < 300000; i++);
+}
 
 int main()
 {
@@ -30,119 +36,122 @@ int main()
     *pGPIODModeReg &= ~(0xFF << 16); // clear
     *pGPIODModeReg |= (0x55 << 16);
 
-    // make all rows HIGH
-    *pOutPutDataReg |= 0x0F;
+    while (1)
+    {
+        // make all rows HIGH
+        *pOutPutDataReg |= 0x0F;
 
-    // make R1 Low (PD0)
-    *pOutPutDataReg &= ~(1 << 0);
+        // make R1 Low (PD0)
+        *pOutPutDataReg &= ~(1 << 0);
 
-    // scan the columns
-    // check C1(PD8) low or high
-    if (!(*pInPutDataReg & (1 << 8)))
-    {
-        delay();
-        printf("1\n");
-    }
-    if (!(*pInPutDataReg & (1 << 9)))
-    {
-         delay();
-        printf("2\n");
-    }
-    if (!(*pInPutDataReg & (1 << 10)))
-    {
-        delay();
-        printf("3\n");
-    }
-    if (!(*pInPutDataReg & (1 << 11)))
-    {
-        delay();
-        printf("4\n");
-    }
+        // scan the columns
+        // check C1(PD8) low or high
+        if (!(*pInPutDataReg & (1 << 8)))
+        {
+            delay();
+            printf("1\n");
+        }
+        if (!(*pInPutDataReg & (1 << 9)))
+        {
+            delay();
+            printf("2\n");
+        }
+        if (!(*pInPutDataReg & (1 << 10)))
+        {
+            delay();
+            printf("3\n");
+        }
+        if (!(*pInPutDataReg & (1 << 11)))
+        {
+            delay();
+            printf("4\n");
+        }
 
-    // make all rows HIGH
-    *pOutPutDataReg |= 0x0F;
+        // make all rows HIGH
+        *pOutPutDataReg |= 0x0F;
 
-    // make R2 Low (PD1)
-    *pOutPutDataReg &= ~(1 << 1);
+        // make R2 Low (PD1)
+        *pOutPutDataReg &= ~(1 << 1);
 
-    // scan the columns
-    // check C1(PD8) low or high
-    if (!(*pInPutDataReg & (1 << 8)))
-    {
-        delay();
-        printf("4\n");
-    }
-    if (!(*pInPutDataReg & (1 << 9)))
-    {
-         delay();
-        printf("5\n");
-    }
-    if (!(*pInPutDataReg & (1 << 10)))
-    {
-        delay();
-        printf("6\n");
-    }
-    if (!(*pInPutDataReg & (1 << 11)))
-    {
-        delay();
-        printf("B\n");
-    }
+        // scan the columns
+        // check C1(PD8) low or high
+        if (!(*pInPutDataReg & (1 << 8)))
+        {
+            delay();
+            printf("4\n");
+        }
+        if (!(*pInPutDataReg & (1 << 9)))
+        {
+            delay();
+            printf("5\n");
+        }
+        if (!(*pInPutDataReg & (1 << 10)))
+        {
+            delay();
+            printf("6\n");
+        }
+        if (!(*pInPutDataReg & (1 << 11)))
+        {
+            delay();
+            printf("B\n");
+        }
 
-    // make all rows HIGH
-    *pOutPutDataReg |= 0x0F;
+        // make all rows HIGH
+        *pOutPutDataReg |= 0x0F;
 
-    // make R3 Low (PD2)
-    *pOutPutDataReg &= ~(1 << 2);
+        // make R3 Low (PD2)
+        *pOutPutDataReg &= ~(1 << 2);
 
-    // scan the columns
-    // check C1(PD8) low or high
-    if (!(*pInPutDataReg & (1 << 8)))
-    {
-        delay();
-        printf("7\n");
-    }
-    if (!(*pInPutDataReg & (1 << 9)))
-    {
-         delay();
-        printf("8\n");
-    }
-    if (!(*pInPutDataReg & (1 << 10)))
-    {
-        delay();
-        printf("9\n");
-    }
-    if (!(*pInPutDataReg & (1 << 11)))
-    {
-        delay();
-        printf("C\n");
-    }
+        // scan the columns
+        // check C1(PD8) low or high
+        if (!(*pInPutDataReg & (1 << 8)))
+        {
+            delay();
+            printf("7\n");
+        }
+        if (!(*pInPutDataReg & (1 << 9)))
+        {
+            delay();
+            printf("8\n");
+        }
+        if (!(*pInPutDataReg & (1 << 10)))
+        {
+            delay();
+            printf("9\n");
+        }
+        if (!(*pInPutDataReg & (1 << 11)))
+        {
+            delay();
+            printf("C\n");
+        }
 
-    // make all rows HIGH
-    *pOutPutDataReg |= 0x0F;
+        // make all rows HIGH
+        *pOutPutDataReg |= 0x0F;
 
-    // make R4 Low (PD3)
-    *pOutPutDataReg &= ~(1 << 3);
+        // make R4 Low (PD3)
+        *pOutPutDataReg &= ~(1 << 3);
 
-    // scan the columns
-    // check C1(PD8) low or high
-    if (!(*pInPutDataReg & (1 << 8)))
-    {
-        delay();
-        printf("*\n");
-    }
-    if (!(*pInPutDataReg & (1 << 9)))
-    {
-         delay();
-        printf("0\n");
-    }
-    if (!(*pInPutDataReg & (1 << 10)))
-    {
-        delay();
-        printf("#\n");
-    }
-    if (!(*pInPutDataReg & (1 << 11)))
-    {
-        delay();
-        printf("D\n");
+        // scan the columns
+        // check C1(PD8) low or high
+        if (!(*pInPutDataReg & (1 << 8)))
+        {
+            delay();
+            printf("*\n");
+        }
+        if (!(*pInPutDataReg & (1 << 9)))
+        {
+            delay();
+            printf("0\n");
+        }
+        if (!(*pInPutDataReg & (1 << 10)))
+        {
+            delay();
+            printf("#\n");
+        }
+        if (!(*pInPutDataReg & (1 << 11)))
+        {
+            delay();
+            printf("D\n");
+        }
     }
 }
