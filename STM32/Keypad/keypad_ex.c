@@ -87,4 +87,33 @@ int main()
         delay();
         printf("B\n");
     }
+
+    // make all rows HIGH
+    *pOutPutDataReg |= 0x0F;
+
+    // make R3 Low (PD2)
+    *pOutPutDataReg &= ~(1 << 2);
+
+    // scan the columns
+    // check C1(PD8) low or high
+    if (!(*pInPutDataReg & (1 << 8)))
+    {
+        delay();
+        printf("7\n");
+    }
+    if (!(*pInPutDataReg & (1 << 9)))
+    {
+         delay();
+        printf("8\n");
+    }
+    if (!(*pInPutDataReg & (1 << 10)))
+    {
+        delay();
+        printf("9\n");
+    }
+    if (!(*pInPutDataReg & (1 << 11)))
+    {
+        delay();
+        printf("C\n");
+    }
 }
