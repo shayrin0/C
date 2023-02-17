@@ -18,6 +18,7 @@
     Address of GPIOD output data register: 0x40020C00 + 0x14 = 0x40020C14
 */
 #include <stdint.h>
+#include "led_ex.h"
 
 int main()
 {
