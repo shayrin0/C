@@ -29,4 +29,33 @@ int main()
     // 4. enable internal pull-up registors for PD8, PD9, PD10, PD11
     *pGPIODModeReg &= ~(0xFF << 16); // clear
     *pGPIODModeReg |= (0x55 << 16);
+
+    // make all rows HIGH
+    *pOutPutDataReg |= 0x0F;
+
+    // make R1 Low (PD0)
+    *pOutPutDataReg &= ~(1 << 0);
+
+    // scan the columns
+    // check C1(PD8) low or high
+    if (!(*pInPutDataReg & (1 << 8)))
+    {
+        delay();
+        printf("1\n");
+    }
+    if (!(*pInPutDataReg & (1 << 9)))
+    {
+         delay();
+        printf("2\n");
+    }
+    if (!(*pInPutDataReg & (1 << 10)))
+    {
+        delay();
+        printf("3\n");
+    }
+    if (!(*pInPutDataReg & (1 << 11)))
+    {
+        delay();
+        printf("4\n");
+    }
 }
