@@ -22,4 +22,7 @@ int main()
     // 2. configure PD0, PD1, PD2, PD3 as output (rows of the keypad)
     *pGPIODModeReg &= ~(0xFF); // clear the bits first
     *pGPIODModeReg |= 0x55; // configure them
+
+    // 3. configure PD8, PD9, PD10, PD11 as input (columns of the keypad)
+    *pGPIODModeReg &= ~(0xFF << 16); // clear the bits to make the pins as input
 }
