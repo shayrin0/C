@@ -10,6 +10,12 @@ void thread1_create()
     static char *thread_input1 = "I am thread no 1";
 
     int rc = pthread_create(&pthread1, NULL, thread_fn_callback, (void *)thread_input1);
+
+    if (rc != 0)
+    {
+        printf("Error occured! Thread could not be created, error = %d\n", rc);
+        exit(0);
+    }
 }
 
 int main(int argc, char ** argv)
