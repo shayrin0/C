@@ -6,6 +6,8 @@
 void thread1_create()
 {
     pthread_t pthread1;
+
+    static char *thread_input1 = "I am thread no 1";
 }
 
 int main(int argc, char ** argv)
